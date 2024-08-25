@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Hand Detection and Speech Interaction</title>
+</head>
+<body>
+  <video id="video" width="640" height="480" autoplay></video>
+  <script src="https://cdn.jsdelivr.net/npm/@tensorflow/tfjs"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@tensorflow-models/handpose"></script>
+  <script>
+    const video = document.getElementById('video');
+    let model;
+
+    async function loadModel() {
+      model = await handpose.load();
+    }
+    loadModel();
+    
+    navigator.mediaDevices.getUserMedia({ video: true })
+      .then(stream => {
+        video.srcObject = stream;
+      });
+
+    video.addEventListener('loadeddata', async () => {
+      while (true) {
+        const predictions = await model.estimateHands(video);
+        if (predictions.length > 0) {
+          welcomeUser();
+          break;
+        }
+        await tf.nextFrame();
+      }
+    });
+
+    function speak(text) {
+      const speech = new SpeechSynthesisUtterance(text);
+      speechSynthesis.speak(speech);
+    }
+
+    function welcomeUser() {
+      speak('Welcome to the website!');
+      startListening();
+    }
+
+    const recognition = new (window.SpeechRecognition || window.webkitSpeechRecognition)();
+    recognition.continuous = true;
+    recognition.interimResults = false;
+    
+    recognition.onresult = (event) => {
+      const transcript = event.results[event.resultIndex][0].transcript.trim();
+      console.log(transcript);
+      // Handle user speech input here
+    };
+
+    function startListening() {
+      recognition.start();
+    }
+  </script>
+</body>
+</html>

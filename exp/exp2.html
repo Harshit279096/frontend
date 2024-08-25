@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Smart City Management System</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<style>
+    body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+header {
+    background-color: #4CAF50;
+    color: white;
+    text-align: center;
+    padding: 1em 0;
+}
+
+header .banner {
+    width: 100%;
+    height: auto;
+}
+
+nav ul {
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+    background-color: #333;
+}
+
+nav ul li {
+    display: inline;
+}
+
+nav ul li a {
+    color: white;
+    padding: 14px 20px;
+    text-decoration: none;
+    display: inline-block;
+}
+
+nav ul li a:hover {
+    background-color: #111;
+}
+
+main {
+    padding: 20px;
+}
+
+section {
+    margin-bottom: 20px;
+}
+
+.section-image {
+    width: 100%;
+    height: auto;
+    margin-bottom: 10px;
+}
+
+form label, form input, form select, form textarea {
+    display: block;
+    margin-bottom: 10px;
+}
+
+form input, form select, form textarea {
+    width: 100%;
+    padding: 8px;
+    margin-top: 5px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+
+form button {
+    background-color: #4CAF50;
+    color: white;
+    padding: 10px 15px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+form button:hover {
+    background-color: #45a049;
+}
+
+footer {
+    background-color: #333;
+    color: white;
+    text-align: center;
+    padding: 10px 0;
+}
+
+</style>
+<body>
+    <header>
+        <img src="banner.jpg" alt="Smart City Banner" class="banner">
+        <h1>Smart City Management System</h1>
+    </header>
+
+    <nav>
+        <ul>
+            <li><a href="#report-issue">Report Issue</a></li>
+            <li><a href="#city-services">City Services</a></li>
+            <li><a href="#real-time-data">Real-Time Data</a></li>
+        </ul>
+    </nav>
+
+    <main>
+        <section id="report-issue">
+            <h2>Report an Issue</h2>
+            <img src="report-issue.jpg" alt="Report Issue" class="section-image">
+            <form id="issue-form">
+                <label for="issue-type">Issue Type:</label>
+                <select id="issue-type" name="issue-type">
+                    <option value="pothole">Pothole</option>
+                    <option value="streetlight">Streetlight Outage</option>
+                    <option value="garbage">Garbage Collection</option>
+                </select>
+                <label for="description">Description:</label>
+                <textarea id="description" name="description" required></textarea>
+                <label for="location">Location:</label>
+                <input type="text" id="location" name="location" required>
+                <button type="submit">Submit</button>
+            </form>
+        </section>
+
+        <section id="city-services">
+            <h2>City Services</h2>
+            <img src="city-services.jpg" alt="City Services" class="section-image">
+            <ul>
+                <li><a href="#">Public Transport</a></li>
+                <li><a href="#">Emergency Services</a></li>
+                <li><a href="#">Utility Services</a></li>
+            </ul>
+        </section>
+
+        <section id="real-time-data">
+            <h2>Real-Time Data</h2>
+            <img src="real-time-data.jpg" alt="Real-Time Data" class="section-image">
+            <div id="data-display">
+                <!-- Real-time data will be displayed here -->
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <p>&copy; 2024 Smart City Management</p>
+    </footer>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+    const issueForm = document.getElementById('issue-form');
+
+    issueForm.addEventListener('submit', function(event) {
+        event.preventDefault();
+
+        const issueType = document.getElementById('issue-type').value;
+        const description = document.getElementById('description').value;
+        const location = document.getElementById('location').value;
+
+        console.log('Issue reported:');
+        console.log('Type:', issueType);
+        console.log('Description:', description);
+        console.log('Location:', location);
+
+        // Here you can add the code to send the issue data to a server
+        // For demonstration, we'll just clear the form
+        issueForm.reset();
+        alert('Issue reported successfully!');
+    });
+
+    // Function to fetch and display real-time data
+    function fetchRealTimeData() {
+        // Example data - replace with actual data fetching code
+        const data = {
+            temperature: '25°C',
+            traffic: 'Moderate',
+            airQuality: 'Good'
+        };
+
+        const dataDisplay = document.getElementById('data-display');
+        dataDisplay.innerHTML = `
+            <p>Temperature: ${data.temperature}</p>
+            <p>Traffic: ${data.traffic}</p>
+            <p>Air Quality: ${data.airQuality}</p>
+        `;
+    }
+
+    // Fetch real-time data on page load and every 5 minutes
+    fetchRealTimeData();
+    setInterval(fetchRealTimeData, 300000); // 300000 ms = 5 minutes
+});
+
+    </script>
+</body>
+</html>

@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="./styles.css" />
+    <link rel="stylesheet" href="./media.css" />
+    <link
+      rel="shortcut icon"
+      href="cityzen-portal-high-resolution-logo.png"
+      type="image/x-icon"
+    />
+    <script src="https://unpkg.com/feather-icons"></script>
+    <title>CityZen Portal</title>
+  </head>
+  <body>
+    <header class="container">
+      <nav>      
+        <div class="mobile-menu">
+          <div class="open-close">
+            <img
+              src="menu.svg"
+              alt="Abrir"
+              class="open"
+              onclick="Menu.open()"
+            />
+            <img
+              src="close.svg"
+              alt="fechar"
+              class="close"
+              onclick="Menu.close()"
+            />
+
+            <div class="logo-menu">
+              <img src="ogo.svg" alt="" />
+              <p>CityZen Portal</p>
+            </div>
+          </div>
+          <div class="menu">
+            <div class="menu-open">
+              <div class="menu-items">
+                <ul>
+                  <li><a href="index.html" onclick="Menu.close()">Home</a></li>
+                  <li><a href="report.html" onclick="Menu.close()">Report</a></li>
+                  <li>
+                    <a
+                      href="report.html"
+                      onclick="Menu.close()"
+                      >Get Started</a
+                    >
+                  </li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </div>
+      </nav>
+
+      <div class="header-content">
+        <div class="header-content-left">
+          <h1>Welcome to the city of tomorrow.</h1>
+          <p>
+            Smart cities harness the power of technology to improve the quality of life for their citizens.
+          </p>
+          <a href="report.html" class="button get-started"
+            >Report Issue</a>
+          
+        </div>
+        <div class="header-content-right">
+          <img src="1-removebg-preview.png"  alt="Team image" />
+        </div>
+        
+      </div>
+    </header>
+    <!--END OF HEADER-------------------- -->
+
+    <main id="preview">
+      <section class="app-preview container">
+        <div class="app-preview-left">
+          <img src="2.webp"width="80%" height="80%" alt="App image" />
+        </div>
+
+        <div class="app-preview-right">
+          <h2 class="section-title">City strolling and soul searching</h2>
+          <p class="section-paragraph">
+            Smart cities are not built with bricks and mortar, but with data and innovation..
+          </p>
+          <div class="get-started-line">
+            <a href="service.html" class="get-started"
+              >Access city Serves</a
+            >
+            <div class="green-line"></div>
+          </div>
+        </div>
+      </section>
+      <!--END OF app-preview container SECTION-------------------- -->
+
+      <section class="track-your-spending container" id="track">
+        <div class="track-your-spending-left">
+          <h2 class="section-title">Living for that city hustle and bustle.</h2>
+          <p class="section-paragraph">
+            A glimpse into the urban landscape of the future, where data and connectivity shape our cityscapes.
+          </p>
+          <div class="get-started-line">
+            <section id="real-time-data">
+              <h2>Real-Time Data</h2>
+              
+              <div id="data-display">
+                  <!-- Real-time data will be displayed here -->
+              </div>
+          </section>
+            <div class="green-line"></div>
+          </div>
+        </div>
+
+        <div class="track-your-spending-right">
+          <img src="3.jpg" alt="image" />
+        </div>
+      </section>
+      <!--END OF track-your-spending SECTION-------------------- -->
+
+      <section id="contact" class="get-in-touch container">
+        <div class="get-in-touch-content">
+          <div class="get-in-touch-left">
+            <h2 class="section-title">Get in touch with us.</h2>
+          </div>
+          <div class="get-in-touch-right">
+            <a
+              href="contact.html"
+              class="button get-started"
+              >Contact</a
+            >
+          </div>
+        </div>
+      </section>
+      <!--END OF get-in-touch SECTION-------------------- -->
+    </main>
+
+    <footer>
+      <div class="footer-container">
+       
+        
+        <div class="footer-card">
+          <h3>Quick Links</h3>
+          <a href="index.html">Report Issue</a>
+          <a href="#preview">Acces city service</a>
+          <a href="#track">Real time data</a>
+          <a href="#contact">Contact</a>
+        </div>
+
+        <div class="footer-card">
+          <h3>Get in touch</h3>
+          <div class="social">
+            <a
+              href="https://www.linkedin.com/in/harshit-verma-06090124b/"
+              target="_blank"
+              id="linkedin"
+              ><i data-feather="linkedin"></i
+            ></a>
+            <a href="https://github.com/Harshit279096" target="_blank"
+              ><i data-feather="github" id="git"></i
+            ></a>
+          </div>
+        </div>
+      </div>
+    </footer>
+    <!--END OF FOOTER-------------------- -->
+
+    <!--LOADING SCREEN-->
+    <div class="loader-overlay">
+      <div class="loader"></div>  
+    </div>
+    
+
+    <script src="https://unpkg.com/scrollreveal"></script>
+    <script src="scrollReveal.js"></script>
+    <script src="home.js"></script>
+    <script>
+      feather.replace();
+    </script>
+
+  <script>
+     function fetchRealTimeData() {
+        // Example data - replace with actual data fetching code
+        const data = {
+            temperature: '25°C',
+            traffic: 'Moderate',
+            airQuality: 'Good'
+        };
+
+        const dataDisplay = document.getElementById('data-display');
+        dataDisplay.innerHTML = `
+            <p>Temperature: ${data.temperature}</p>
+            <p>Traffic: ${data.traffic}</p>
+            <p>Air Quality: ${data.airQuality}</p>
+        `;
+    }
+    fetchRealTimeData();
+
+    // ==== LOADING SCREEN
+    let spinner = document.querySelector('.loader-overlay');
+
+    window.addEventListener('load', () => {
+      spinner.parentElement.removeChild(spinner);
+    })
+  </script>
+  </body>
+</html>
